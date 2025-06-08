@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services - StyleSphere</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body.male {
+      background: url('images/male_bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    body.female {
+      background: url('images/female_bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      text-align: center;
+      color: white; /* Make all text white by default */
+    }
+
+    .container h1 {
+      color: white; /* Ensure heading is white */
+    }
+     .container h2 {
+      color: white; /* Ensure heading is white */
+    }
+
+    .container label {
+      color: white;
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select, input[type="date"] {
+      margin-top: 5px;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+      width: 200px;
+    }
+
+    #book-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #ffffff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Available Services</h1>
+    <div id="services-list"></div>
+
+    <div id="booking-section" class="booking-form">
+      <h2>Book Your Slot</h2>
+
+      <label for="selected-service">Choose Service:</label>
+      <select id="selected-service"></select>
+
+      <label for="booking-date">Select Date:</label>
+      <input type="date" id="booking-date" min="" />
+
+      <label for="booking-time">Select Time Slot:</label>
+      <select id="booking-time">
+        <option value="10:00 AM">10:00 AM</option>
+        <option value="11:00 AM">11:00 AM</option>
+        <option value="12:00 PM">12:00 PM</option>
+        <option value="2:00 PM">2:00 PM</option>
+        <option value="3:00 PM">3:00 PM</option>
+        <option value="4:00 PM">4:00 PM</option>
+      </select>
+
+      <button id="book-btn">Book Now</button>
+      <p id="booking-message" class="message"></p>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

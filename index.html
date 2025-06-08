@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome | StyleSphere</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body, html {
+      font-family: Arial, sans-serif;
+      color: #fff;
+      background-color: #121212;
+    }
+
+    /* Navbar with glass effect */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 1000;
+    }
+
+    .nav-logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #f9f4f4;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: #fdfcfc;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links li a:hover {
+      color: #007bff;
+    }
+
+    /* Welcome Split Background */
+    .split-background {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .section {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      filter: brightness(0.5);
+    }
+
+    .section.male {
+      background-image: url('m.webp');
+    }
+
+    .section.unisex {
+      background-image: url('f.webp');
+    }
+
+    .section.female {
+      background-image: url('u.webp');
+    }
+
+    .welcome-section {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.08);
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .welcome-section h1 {
+      font-size: 40px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .welcome-section p {
+      font-size: 20px;
+      font-weight: 500;
+      color: #f1eeee;
+      text-shadow: 1px 1px 2px rgba(6, 1, 1, 0.4);
+    }
+
+    /* Info Sections */
+    .info-section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      position: relative;
+      color: #fff;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+      z-index: 1;
+      filter: brightness(0.7); /* Optional: further darkens background image */
+    }
+
+    .info-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.65); /* stronger overlay */
+      z-index: -1;
+      border-radius: 20px;
+    }
+
+    .info-section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .info-section p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin: 10px 0;
+      color: #f1f1f1;
+    }
+
+    /* Background Images per Section */
+    #about {
+      background-image: url('about.jpeg');
+    }
+
+    #reviews {
+      background-image: url('reviews.jpeg');
+    }
+
+    #contact {
+      background-image: url('contact.webp');
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-logo">StyleSphere</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="login.html">Login/Signup</a></li>
+    </ul>
+  </nav>
+
+  <!-- Split Background -->
+  <div class="split-background" id="home">
+    <div class="section male"></div>
+    <div class="section female"></div>
+    <div class="section unisex"></div>
+
+    <!-- Welcome Content -->
+    <div class="welcome-section">
+      <h1>Welcome to StyleSphere</h1>
+      <p>Your gateway to effortless salon bookings.</p>
+    </div>
+  </div>
+
+  <!-- About -->
+  <section id="about" class="info-section">
+    <h2>About StyleSphere</h2>
+    <p>StyleSphere is your one-stop solution for seamless salon appointment bookings, tailored services, and personalized grooming experiences. We connect customers to top-rated salons and streamline the process.</p>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="info-section">
+    <h2>Customer Reviews</h2>
+    <p>
+      ⭐ "Absolutely loved the service and ease of booking!"<br>
+      ⭐ "Booking was so quick. I found the right salon in seconds!"<br>
+      ⭐ "Highly recommended for everyone who values time and style!"
+    </p>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="info-section">
+    <h2>Contact Us</h2>
+    <p>
+      📧 Email: support@stylesphere.com<br>
+      📞 Phone: +91 98765 43210<br>
+      📍 Location: Vijayawada, Andhra Pradesh, India
+    </p>
+  </section>
+</body>
+</html>

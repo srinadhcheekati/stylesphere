@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login & Signup | StyleSphere</title>
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      position: relative;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      z-index: -1;
+    }
+
+    .wrapper {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 30px 40px;
+      border-radius: 12px;
+      width: 350px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      color: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #fff;
+    }
+
+    .input-box {
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 12px 40px 12px 12px;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      outline: none;
+      background-color: rgba(255, 255, 255, 0.85);
+      color: #000;
+    }
+
+    .input-box input:focus {
+      border-color: #3f51b5;
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #333;
+      font-size: 22px;
+    }
+
+    .remember-forget {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 25px;
+      color: #eee;
+    }
+
+    .remember-forget a {
+      text-decoration: none;
+      color: #add8ff;
+    }
+
+    button.btn {
+      width: 100%;
+      padding: 12px;
+      background: #3f51b5;
+      border: none;
+      color: white;
+      font-size: 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button.btn:hover {
+      background: #2c3e9e;
+    }
+
+    .registerlink {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 15px;
+      color: #eee;
+    }
+
+    .registerlink a {
+      color: #add8ff;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    #signup-form {
+      display: none;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 13px;
+      margin-top: -15px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .success-message {
+      color: limegreen;
+      font-size: 14px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Login Form -->
+    <form id="login-form">
+      <h1>Login to StyleSphere</h1>
+      <div class="input-box">
+        <input type="text" id="login-username" placeholder="Username" required autocomplete="username" />
+        <i class="bx bx-user-circle"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="login-password" placeholder="Password" required autocomplete="current-password" />
+        <i class="bx bx-lock-alt"></i>
+      </div>
+      <div class="remember-forget">
+        <label><input type="checkbox" id="remember-me" /> Remember me</label>
+        <a href="#" onclick="alert('Forgot password feature coming soon!')">Forget password?</a>
+      </div>
+      <div class="error-message" id="login-error"></div>
+      <button type="submit" class="btn">Login</button>
+      <div class="registerlink">
+        <p>
+          Don't have an account?
+          <a id="show-signup" href="javascript:void(0)">Register</a>
+        </p>
+      </div>
+    </form>
+
+    <!-- Signup Form -->
+    <form id="signup-form">
+      <h1>Create Account</h1>
+      <div class="input-box">
+        <input type="text" id="signup-username" placeholder="Choose username" required autocomplete="username" />
+        <i class="bx bx-user-circle"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="signup-password" placeholder="Choose password" required autocomplete="new-password" minlength="6" />
+        <i class="bx bx-lock-alt"></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="signup-password-confirm" placeholder="Confirm password" required autocomplete="new-password" minlength="6" />
+        <i class="bx bx-lock-alt"></i>
+      </div>
+      <div class="error-message" id="signup-error"></div>
+      <div class="success-message" id="signup-success"></div>
+      <button type="submit" class="btn">Signup</button>
+      <div class="registerlink">
+        <p>
+          Already have an account?
+          <a id="show-login" href="javascript:void(0)">Login</a>
+        </p>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const showSignup = document.getElementById('show-signup');
+    const showLogin = document.getElementById('show-login');
+    const loginError = document.getElementById('login-error');
+    const signupError = document.getElementById('signup-error');
+    const signupSuccess = document.getElementById('signup-success');
+
+    showSignup.addEventListener('click', () => {
+      loginForm.style.display = 'none';
+      signupForm.style.display = 'block';
+      clearMessages();
+    });
+
+    showLogin.addEventListener('click', () => {
+      signupForm.style.display = 'none';
+      loginForm.style.display = 'block';
+      clearMessages();
+    });
+
+    function clearMessages() {
+      loginError.textContent = '';
+      signupError.textContent = '';
+      signupSuccess.textContent = '';
+    }
+
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      signupError.textContent = '';
+      signupSuccess.textContent = '';
+
+      const username = document.getElementById('signup-username').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const passwordConfirm = document.getElementById('signup-password-confirm').value;
+
+      if (password !== passwordConfirm) {
+        signupError.textContent = 'Passwords do not match.';
+        return;
+      }
+
+      if (localStorage.getItem('user_' + username)) {
+        signupError.textContent = 'Username already exists.';
+        return;
+      }
+
+      const userData = { username, password };
+      localStorage.setItem('user_' + username, JSON.stringify(userData));
+
+      signupSuccess.textContent = 'Account created successfully! You can login now.';
+      signupForm.reset();
+
+      setTimeout(() => {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+        clearMessages();
+      }, 2000);
+    });
+
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      loginError.textContent = '';
+
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value;
+
+      const storedUser = localStorage.getItem('user_' + username);
+      if (!storedUser) {
+        loginError.textContent = 'User does not exist. Please signup first.';
+        return;
+      }
+
+      const userData = JSON.parse(storedUser);
+      if (userData.password !== password) {
+        loginError.textContent = 'Incorrect password.';
+        return;
+      }
+
+      localStorage.setItem('loggedInUser', username);
+      window.location.href = 'gender.html';
+    });
+  </script>
+</body>
+</html>
